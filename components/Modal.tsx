@@ -13,6 +13,7 @@ interface ModalProps {
 	disabled?: boolean;
 }
 
+// @ts-ignore
 const Modal: React.FC<ModalProps> = ({
 	isOpen,
 	onClose,
