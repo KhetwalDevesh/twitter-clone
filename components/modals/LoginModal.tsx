@@ -3,6 +3,7 @@ import { useCallback, useState } from "react";
 import Input from "../Input";
 import Modal from "../Modal";
 import useRegisterModal from "@/hooks/useRegisterModal";
+import { signIn } from "next-auth/react";
 
 const LoginModal = () => {
 	const loginModal = useLoginModal();
@@ -23,12 +24,15 @@ const LoginModal = () => {
 	const onSubmit = useCallback(async () => {
 		try {
 			setIsLoading(true);
-			// TODO AND LOGIN
+			await signIn("credentials", {
+				email,
+				password,
+			});
 			loginModal.onClose();
 		} catch (error) {
 			setIsLoading(false);
 		}
-	}, [loginModal]);
+	}, [loginModal, email, password]);
 
 	const bodyContent = (
 		<div className="flex flex-col gap-4">
@@ -42,6 +46,7 @@ const LoginModal = () => {
 			/>
 			<Input
 				placeholder="Password"
+				type="password"
 				value={password}
 				disabled={isLoading}
 				onChange={(e) => {
@@ -54,7 +59,7 @@ const LoginModal = () => {
 	const footerContent = (
 		<div className="text-neutral-400 text-center mt-4">
 			<p>
-				First time using Twitter?{" "}
+				First time using Chitter?{" "}
 				<span
 					onClick={onToggle}
 					className="
