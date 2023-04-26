@@ -59,7 +59,7 @@ const LoginModal = () => {
 	const footerContent = (
 		<div className="text-neutral-400 text-center mt-4">
 			<p>
-				First time using Chitter?{" "}
+				First time using Chwitter?{" "}
 				<span
 					onClick={onToggle}
 					className="
